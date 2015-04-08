@@ -1,0 +1,14 @@
+<div class="debate-container">
+  <input placeholder="Start Debate . . ." type="text" class="new-debate-input" id="new-debate" ng-model="text">
+  <!-- new debate submitted here -->
+  <button class="btn-debate" id="debate" ng-click="submitDebate(text)">Debate</button>
+</div>
+
+<div class="debates" id="debates-target">
+  <div class="debate-container" ui-sref-active="active" ui-sref="debate({debateId: [[debate.id]]})"ng-repeat="debate in debates">
+    <div class="debate-body"> [[ debate.text ]]</div>
+    <div class="debate-name"> [[ debate.user ]]</div>
+    <div class="debate-time"> [[ debate.timestamp | date:'medium' ]]</div>
+  	</a>
+  </div>
+</div>

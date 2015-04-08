@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" ng-app="clusoryApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Clusory</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'clusory/css/style.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'clusory/css/menu.css' %}"/>
+</head>
+<body>
+<h1 class="leader-h">Clusory</h1>
+
+<div id='cssmenu'>
+  <ul>
+    <li ui-sref-active="active"><a ui-sref="debates"><span>All Debates</span></a></li>
+    <li ui-sref-active="active"><a ui-sref="my-debates({ userId:AuthUser})"> <span>My Debates</span></a></li>
+    <li ui-sref-active="active"><a ui-sref="profile"><span>Open Questions</span></a></li>
+    <li ui-sref-active="active"><a ui-sref="profile"><span>Open Debates</span></a></li>
+    <li ui-sref-active="active"><a ui-sref="profile"><span>Completed Debates</span></a></li>
+    <li ui-sref-active="active"><a ui-sref="profile"><span>Profile</span></a></li>
+  </ul>
+</div>
+<h3 class="user-h">logged in as: {{ user.get_username }}</h3>
+
+<div ui-view></div>
+
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/lib/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/lib/angular.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/lib/angular-resource.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/lib/angular-route.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/lib/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/js/app.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/js/services.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}clusory/js/controllers.js"></script>
+<script type="text/javascript">
+  angular
+      .module('clusoryApp.services')
+      .factory('AuthUser', function() {
+        return {
+          id: "{{ user.id|default:''}}",
+        }
+      });
+</script>
+</body>
+</html>
